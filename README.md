@@ -23,7 +23,7 @@ http://localhost:3000/api/db/select?Name=名前
 - *電話番号*を指定して検索  
 http://localhost:3000/api/db/select?PhoneNumber=電話番号  
   
-DBに保存されているデータ件数を表示
+DBに保存されているデータ件数を表示  
 http://localhost:3000/api/db/count  
   
   
@@ -38,5 +38,5 @@ curl -sS -X DELETE 'http://localhost:3000/api/db/delete' -d 'SEQ=番号'
 ```
 *番号*には削除したいキーの番号を入力してください.  
   
-
+  
 作成中...
