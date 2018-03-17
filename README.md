@@ -29,14 +29,14 @@ http://localhost:3000/api/db/count
   
 INSERT  
 ```
-curl -sS -X POST 'http://localhost:3000/api/db/insert' -d ''
+curl -sS -X POST 'http://localhost:3000/api/db/insert' -d 'Name=名前&PhoneNumber=電話番号'
 ```
   
 DELETE  
 ```
 curl -sS -X DELETE 'http://localhost:3000/api/db/delete' -d 'SEQ=番号'
 ```
-*番号*には削除したいキーの番号を入力してください.  
+*番号*には削除したいキーの番号を入力.  
   
   
 作成中...
