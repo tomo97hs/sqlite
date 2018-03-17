@@ -38,6 +38,26 @@ router.get('/tables', function(req, res, next) {
   }
 });
 
+/* count */
+router.get('/count', function(req, res, next) {
+  console.log('api/db/count');
+  var db = new sqlite3.Database(dbFile);
+  db.serialize(function() {
+    db.all("SELECT COUNT(*) AS COUNT FROM tblAddressBook", function(err, rows) {
+      if (err) {
+        var er = Error('Sql Error');
+        er.status = 404;
+        next(er);
+      } else {
+        db.close();
+        res.status(200);
+        res.send(rows);
+      }
+    });
+  });
+});
+
+
 /* list */
 router.get('/list', function(req, res, next) {
   console.log('api/db/list');
@@ -76,6 +96,7 @@ router.post('/insert', function(req, res, next) {
         res.status(404);
         res.send('Insert Error');
       } else {
+
         db.close();
         res.status(200);
         res.json('OK');
@@ -87,8 +108,7 @@ router.post('/insert', function(req, res, next) {
 /* delete */
 router.delete('/delete', function(req, res, next) {
   console.log('api/db/delete');
-  var urlParse = url.parse(req.url, true);
-  var seq = urlParse.query.SEQ;
+  var seq = req.body.SEQ;
   console.log(seq);
   var sql = "DELETE FROM tblAddressBook WHERE SEQ=" + seq;
   var db = new sqlite3.Database(dbFile);
@@ -101,7 +121,7 @@ router.delete('/delete', function(req, res, next) {
       } else {
         db.close();
         res.status(200);
-        res.send('OK');
+        res.json('OK');
       }
     });
   });
